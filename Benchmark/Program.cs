@@ -20,6 +20,7 @@ namespace Benchmark
             var searchMethods = new List<Func<int[], int, bool>>
             {
                 Search.Linear,
+                Search.LinearLinq,
                 Search.Binary
             };
 
@@ -41,6 +42,7 @@ namespace Benchmark
                     stopWatch.Stop();
                     Console.WriteLine($"{search.Method.Name}, size {testSize}: {stopWatch.ElapsedMilliseconds}ms");
                 }
+                Console.WriteLine();
             }
 
         }

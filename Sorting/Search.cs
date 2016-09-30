@@ -21,6 +21,11 @@ namespace Sorting
             return false;
         }
 
+        public static bool LinearLinq(int[] array, int target)
+        {
+            return array.Any(i => i == target);
+        }
+
         public static bool Binary(int[] array, int target)
         {
             int min = 0;
