@@ -19,7 +19,8 @@ namespace Benchmark
         {
             var searchMethods = new List<Func<int[], int, bool>>
             {
-                Search.Linear
+                Search.Linear,
+                Search.Binary
             };
 
             var tests = new Program();
