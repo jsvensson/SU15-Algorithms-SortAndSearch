@@ -43,13 +43,13 @@ namespace Benchmark
         private static int[] GenerateUnsortedArray(int length)
         {
             int[] array = GenerateSortedArray(length);
-            Random rng = new Random();   // i.e., java.util.Random.
-            int n = array.Length;        // The number of items left to shuffle (loop invariant).
+            Random rng = new Random();
+            int n = array.Length;
             while (n > 1)
             {
-                int k = rng.Next(n);  // 0 <= k < n.
-                n--;                     // n is now the last pertinent index;
-                int temp = array[n];     // swap array[n] with array[k] (does nothing if k == n).
+                int k = rng.Next(n);
+                n--;
+                int temp = array[n];
                 array[n] = array[k];
                 array[k] = temp;
             }
