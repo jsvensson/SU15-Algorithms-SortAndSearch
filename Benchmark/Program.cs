@@ -31,8 +31,8 @@ namespace Benchmark
             };
 
             BenchmarkSearching(searchMethods);
-            BenchmarkSorting(sortMethods);
-
+            BenchmarkHashSet();
+            //BenchmarkSorting(sortMethods);
         }
 
         private static int[] GenerateSortedArray(int length)
@@ -59,10 +59,8 @@ namespace Benchmark
 
         private static void BenchmarkSearching(IEnumerable<Func<int[], int, bool>> methods)
         {
-
-
             var tests = new Program();
-            Console.WriteLine($"Search algorithms, {SearchLoops} iterations per search");
+            Console.WriteLine($"Search algorithms, {SearchLoops} iterations per size");
             Console.WriteLine();
 
             foreach (var search in methods)
@@ -105,9 +103,37 @@ namespace Benchmark
 
                     stopWatch.Stop();
                     Console.WriteLine($"{sortMethod.Method.Name}, size {testSize}: {stopWatch.ElapsedMilliseconds}ms");
-
                 }
             }
+        }
+
+        private static void BenchmarkHashSet()
+        {
+            var tests = new Program();
+            Console.WriteLine($"HashSet, {SearchLoops} iterations per size");
+            Console.WriteLine();
+
+            foreach (var testSize in tests.arraySizes)
+            {
+                var hash = new HashSet<int>();
+
+                for (int i = 0; i < testSize; i++)
+                {
+                    hash.Add(i);
+                }
+
+                Stopwatch stopWatch = Stopwatch.StartNew();
+                for (int i = 0; i < SearchLoops; i++)
+                {
+                    int target = tests.rnd.Next(testSize);
+                    hash.Contains(target);
+                }
+                stopWatch.Stop();
+                Console.WriteLine($"HashSet, size {testSize}: {stopWatch.ElapsedMilliseconds}ms");
+
+            }
+
+
         }
     }
 }
